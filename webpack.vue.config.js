@@ -13,7 +13,7 @@ module.exports = {
      },*/
 
     entry:{//打包的入口文件，可以是string或object
-        build:'./vue/index'
+        build:'./vue/index' //打包成的文件名称为build.js,如果不写或者路径中没有./时，会默认生成index.js
     },
     output:{//配置打包结果，是一个对象 object
         path:'./build_vue',
