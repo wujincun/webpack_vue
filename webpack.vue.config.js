@@ -2,6 +2,8 @@
 /**
  * Created by wujincun on 2016/10/27.
  */
+var htmlWebpackPlugin=require("html-webpack-plugin");
+var path = require("path");//path内置模块不需安装
 module.exports = {
     /* entry: {
      app: [
@@ -11,10 +13,10 @@ module.exports = {
      },*/
 
     entry:{//打包的入口文件，可以是string或object
-        build:'vue/index'
+        build:'./vue/index'
     },
     output:{//配置打包结果，是一个对象 object
-        path:'build/vue',
+        path:'./build_vue',
         //publicPath: "http://cdn.example.com/assets/[hash]/",//publicPath指定了你在浏览器中用什么地址来引用你的静态文件，它会包括你的图片、脚本以及样式加载的地址，一般用于线上发布以及CDN部署的时候使用。
         filename:'[name].js'   //因为打包多个文件，即将build、abs分别打包，此时fileName:[].js
     },
@@ -38,11 +40,11 @@ module.exports = {
         new htmlWebpackPlugin({
             title:"欢迎",
             chunks:["build"]//html中引入的js模块
-        }),
-        new htmlWebpackPlugin({
+        })
+     /*   new htmlWebpackPlugin({
             title:"欢迎",
             filename:"class.html",//生成的html文件名称，如果不写，则默认为index.html
             chunks:["abs"]
-        }),
+        }),*/
     ]
 }
