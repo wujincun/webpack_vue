@@ -105,7 +105,5 @@ module.exports = {
        // neExtractTextPlugin("style.css", { allChunks: true }),//css合并到一个文件
        /* new webpack.optimize.CommonsChunkPlugin("commons", "commons.js"), //如果包含chunk文件，并且chunk文件中也引入了样式文件，样式文件不会嵌入到js中，而是直接输出到style.css
         new //ExtractTextPlugin("[name].css")*/
-
-
     ]
 }
