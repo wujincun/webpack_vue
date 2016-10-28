@@ -2,7 +2,9 @@
 /**
  * Created by wujincun on 2016/10/27.
  */
-var htmlWebpackPlugin=require("html-webpack-plugin");
+var webpack = require("webpack");
+//var ExtractTextPlugin = require("extract-text-webpack-plugin");//提出css文件
+var htmlWebpackPlugin=require("html-webpack-plugin");//生成html插件,也可以加hash值，版本控制
 var path = require("path");//path内置模块不需安装
 module.exports = {
     /* entry: {
@@ -13,7 +15,8 @@ module.exports = {
      },*/
 
     entry:{//打包的入口文件，可以是string或object
-        build:'./vue/index' //打包成的文件名称为build.js,如果不写或者路径中没有./时，会默认生成index.js
+        build:'./vue/index', //打包成的文件名称为build.js,如果不写或者路径中没有./时，会默认生成index.js
+        //vendor: ["jquery", "underscore", ...],
     },
     output:{//配置打包结果，是一个对象 object
         path:'./build_vue',
@@ -29,6 +32,10 @@ module.exports = {
                 test:/.css$/,//正则
                 loaders:['style','css'],//从右向左
                 exclude:"/node_modules" //排除的文件夹
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader?limit=8192' //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
             }
         ]
         //noParse:/no-parse.js/,//使用了noParse的模块将不会被loaders解析,即此处的no-parse.js文件太大，并且其中不包含require、define或者类似的关键字的时候(因为这些模块加载并不会被解析，所以就会报错)，我们就可以使用这项配置来提升性能
@@ -45,18 +52,29 @@ module.exports = {
 
     },
     //externals:{
-    // moment: true
+        // moment: true//externals对象的key是给require时用的，比如require('react')，对象的value表示的是如何在global（即window）中访问到该对象，这里是window.React。
     // },//Webpack 和公用的 CDN 结合，即声明外部依赖,html中<script src="//apps.bdimg.com/libs/moment/2.8.3/moment-with-locales.min.js"></script>
-
+    devtool: 'eval-source-map',//直接定位bug
     plugins:[
         new htmlWebpackPlugin({
             title:"欢迎",
-            chunks:["build"]//html中引入的js模块
-        })
+            filename:"main.html",//生成的html文件名称，如果不写，则默认为index.html
+            //chunks:["build"],//html中引入的js模块
+             //template: "./build_vue/index.html",//path.resolve('index.html'),//模板路径
+            inject: 'body'
+        }),
      /*   new htmlWebpackPlugin({
             title:"欢迎",
             filename:"class.html",//生成的html文件名称，如果不写，则默认为index.html
             chunks:["abs"]
         }),*/
+        //new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),//提取出公共文件vendor---》vendor.bundle.js
+        //new webpack.optimize.CommonsChunkPlugin("common.js"),//抽取多入口文件的js公共部分
+        //new ExtractTextPlugin("[name].css"),//css文件提取出来
+       // new ExtractTextPlugin("style.css", { allChunks: true }),//css合并到一个文件
+       /* new webpack.optimize.CommonsChunkPlugin("commons", "commons.js"), //如果包含chunk文件，并且chunk文件中也引入了样式文件，样式文件不会嵌入到js中，而是直接输出到style.css
+        new ExtractTextPlugin("[name].css")*/
+
+
     ]
 }
