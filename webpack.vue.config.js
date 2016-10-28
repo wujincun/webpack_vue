@@ -27,7 +27,7 @@ module.exports = {
         //libraryTarget:"commonjs2"//这两个属性规定了打包的build.js以什么对象名和方式输出；一般2选1
     },
     module:{//定义了对模块的处理逻辑  object
-        loaders:[//定义了一系列的加载器 array
+      /*  loaders:[//定义了一系列的加载器 array
             {
                 test:/.css$/,//正则
                 loaders:['style','css'],//从右向左
@@ -37,20 +37,46 @@ module.exports = {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader?limit=8192' //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
             },
-            /*{
+            /!*{
                 test: require.resolve('jquery'),//在 AMD/CMD 中，我们需要对不符合规范的模块（比如一些直接返回全局变量的插件）进行 shim 处理，这时候我们需要使用 exports-loader 来帮忙
                 //之后在脚本中需要引用该模块的时候，这么简单地来使用就可以了：require('./tool/swipe.js');swipe();
                 loader: 'expose?jQuery'
-            }//输出jQuery到全局*/
-        ]
+            }//输出jQuery到全局*!/
+        ]*/
         //noParse:/no-parse.js/,//使用了noParse的模块将不会被loaders解析,即此处的no-parse.js文件太大，并且其中不包含require、define或者类似的关键字的时候(因为这些模块加载并不会被解析，所以就会报错)，我们就可以使用这项配置来提升性能
+        loaders: [
+            // 解析.vue文件
+            { test: /\.vue$/, loader: 'vue' },
+            // 转化ES6的语法
+            { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+            // 编译css并自动添加css前缀
+            { test: /\.css$/, loader: 'style!css!postcss'},
+            //.scss 文件想要编译，scss就需要这些东西！来编译处理
+            //install css-loader style-loader sass-loader node-sass --save-dev
+            /*{ test: /\.scss$/, loader: 'style!css!sass?sourceMap'},*/
+            // 图片转化，小于8K自动转化为base64的编码
+            { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'},
+            //html模板编译？
+            { test: /\.(html|tpl)$/, loader: 'html-loader' },
+        ]
+    },
+    vue: {
+        loaders: {
+            css: 'style!css!postcss',
+        }
+    },
+    // 转化成es5的语法
+    babel: {
+        presets: ['es2015'],
+        plugins: ['transform-runtime']
     },
     devServer:{  //配置服务，但是即使在此处hot和inline设为true命令行里仍旧要写
         hot:true,
         inline:true
     },
+
     resolve:{
-        extensions: ['', '.js','.css', '.jsx'],//自动补全后缀
+        extensions: ['', '.js','.css', '.jsx','.vue'],//自动补全后缀
         // alias:{
         //     moment : 'moment/min/moment-with-locales.min.js'//为模块设置别名，指定一些模块的引用路径,打包的时间被大大缩短
         // }
