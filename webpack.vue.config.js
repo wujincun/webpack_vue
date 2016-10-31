@@ -15,7 +15,7 @@ module.exports = {
      },*/
 
     entry:{//打包的入口文件，可以是string或object
-        build:'./vue/index', //打包成的文件名称为build.js,如果不写或者路径中没有./时，会默认生成index.js
+        build:'./src/main', //打包成的文件名称为build.js,如果不写或者路径中没有./时，会默认生成index.js
         //vendor: ["jquery", "underscore", ...],
     },
     output:{//配置打包结果，是一个对象 object
@@ -48,9 +48,9 @@ module.exports = {
             // 解析.vue文件
             { test: /\.vue$/, loader: 'vue' },
             // 转化ES6的语法
-            { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+            { test: /\.js$/, loader: 'babel?presets[]=es2015', exclude: /node_modules/ },
             // 编译css并自动添加css前缀
-            { test: /\.css$/, loader: 'style!css!postcss'},
+            { test: /\.css$/, loaders:['style','css','postcss']},
             //.scss 文件想要编译，scss就需要这些东西！来编译处理
             //install css-loader style-loader sass-loader node-sass --save-dev
             /*{ test: /\.scss$/, loader: 'style!css!sass?sourceMap'},*/
@@ -60,16 +60,7 @@ module.exports = {
             { test: /\.(html|tpl)$/, loader: 'html-loader' },
         ]
     },
-    vue: {
-        loaders: {
-            css: 'style!css!postcss',
-        }
-    },
-    // 转化成es5的语法
-    babel: {
-        presets: ['es2015'],
-        plugins: ['transform-runtime']
-    },
+
     devServer:{  //配置服务，但是即使在此处hot和inline设为true命令行里仍旧要写
         hot:true,
         inline:true
@@ -89,10 +80,10 @@ module.exports = {
     plugins:[
         new htmlWebpackPlugin({
             title:"欢迎",
-            //filename:"main.html",//生成的html文件名称，如果不写，则默认为index.html
+            filename:"main.html",//生成的html文件名称，如果不写，则默认为index.html
             chunks:["build"],//html中引入的js模块
-             //template: "./build_vue/index.html",//path.resolve('index.html'),//模板路径
-            inject: 'body'
+            //template: "./build_vue",//path.resolve('index.html'),//模板路径
+            //inject: 'body'
         }),
      /*   new htmlWebpackPlugin({
             title:"欢迎",
