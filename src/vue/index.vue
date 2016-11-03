@@ -1,10 +1,10 @@
 
 <template>
-    <p>{{ message }}</p>
-    <input v-model="message">
+    <div>
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
 </template>
-
-
 <script>
     export default{
         data(){
