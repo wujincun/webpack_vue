@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <p>{{ message }}</p>
+        <p class="message">{{ message }}</p>
         <input v-model="message">
     </div>
 </template>
@@ -15,3 +15,8 @@
     }
 
 </script>
+<style>
+    .message{
+        color: green;
+    }
+</style>

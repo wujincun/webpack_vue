@@ -8,6 +8,14 @@
     "start_vue": "webpack --config webpack.vue.config.js",
     "build_vue": "webpack-dev-server --hot --inline --config webpack.vue.config.js"
   },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/wujincun/webpack_vue.git"
@@ -42,9 +50,11 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "vue": "^2.0.3",
+    "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^9.7.0",
     "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-merge": "^0.15.0"
   }
 }
