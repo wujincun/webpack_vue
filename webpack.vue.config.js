@@ -107,7 +107,6 @@ module.exports = {
     ]
 };*/
 var path = require('path');
-var htmlWebpackPlugin=require("html-webpack-plugin");//生成html插件,也可以加hash值，版本控制
 
 var config = {
     entry: [
@@ -141,7 +140,7 @@ var config = {
         },
         extensions: ['', '.js', '.vue']
     },
-    plugins:[
+/*    plugins:[
         new htmlWebpackPlugin({
             title:"欢迎",
             filename:"main.html",//生成的html文件名称，如果不写，则默认为index.html
@@ -149,7 +148,7 @@ var config = {
             //template: "./build_vue",//path.resolve('index.html'),//模板路径
             //inject: 'body'
         })
-   ]
+   ]*/
 };
 
 module.exports = config;
