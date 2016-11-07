@@ -8060,13 +8060,19 @@
 	//
 	//
 	//
+	//
 
 	exports.default = {
 	    data: function data() {
 	        return {
 	            title: 'this is todoList',
 	            newItem: '',
-	            items: _store2.default.fetch()
+	            /*items: Store.fetch(),*/
+	            items: [{
+	                label: 'apple'
+	            }, {
+	                label: 'banana'
+	            }]
 	        };
 	    },
 
@@ -8080,9 +8086,19 @@
 	                isFinished: false
 	            });
 	            this.newItem = '';
+	            alert(2);
 	        },
 	        toggleFinish: function toggleFinish(item) {
 	            item.isFinished = !item.isFinished;
+	        }
+	    },
+	    watch: {
+	        items: {
+	            handler: function handler(items) {
+	                alert(1);
+	                _store2.default.save(items);
+	            },
+	            deep: true //如果不这样写，没有深层赋值，那么items里只是一个key更改的话不会检测到
 	        }
 	    }
 	};
@@ -8186,7 +8202,7 @@
 	module.exports={render:function (){with(this) {
 	  return _m(0)
 	}},staticRenderFns: [function (){with(this) {
-	  return _h('div', ["component.hello123"])
+	  return _h('div', ["component.hello1234"])
 	}}]}
 	if (false) {
 	  module.hot.accept()
@@ -8242,7 +8258,7 @@
 	        }
 	      }
 	    }, ["\n            " + _s(item.label) + "\n        "])
-	  })])])
+	  })]), " ", _h('Hello')])
 	}},staticRenderFns: []}
 	if (false) {
 	  module.hot.accept()

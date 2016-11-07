@@ -1,3 +1,3 @@
 <template>
-    <div>component.hello123</div>
+    <div>component.hello1234</div>
 </template>
