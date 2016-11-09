@@ -2,6 +2,7 @@
 /**
  * Created by wujincun on 2016/10/31.
  */
+import  "./flexible"
 import Vue from "vue"
 import App from "./app.vue"
 

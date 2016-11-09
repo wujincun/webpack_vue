@@ -60,7 +60,12 @@
 
 </script>
 <style lang="sass?outputStyle=expanded">
+    @keyframes mymove {
+        0% {transform:scale(0)}
+        100% {transform: scale(1)}
+    }
     #todoList{
+        animation:mymove 5s;
         h1{
             color: green;
             transform: scale(1);

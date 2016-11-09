@@ -151,10 +151,10 @@ var config = {
             css: ExtractTextPlugin.extract("vue-style!css"),
             less: ExtractTextPlugin.extract("vue-style!css!less-loader")
         },*/
-        postcss: [require('postcss-px2rem')({remUnit: 64})]
+        postcss: [require('autoprefixer')({ browsers: ['last 2 versions'] }),require('postcss-px2rem')({remUnit: 64})]
     },
     postcss() {
-        return [autoprefixer({ browsers: ['last 2 versions'] }),px2rem({remUnit: 75})];
+        return [autoprefixer({ browsers: ['last 2 versions'] }),px2rem({remUnit: 75})];  //貌似有了vue这个没用
     },
     resolve: {
         /**
