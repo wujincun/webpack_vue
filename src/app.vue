@@ -2,7 +2,7 @@
 <template>
         <div id="todoList">
             <h1 v-text="title"></h1><!--<h1>{{title}}</h1>相同-->
-            <input type="text" v-model="newItem"  @keyup.enter="addNew">
+            <input type="text" v-model="newItem"  @keyup.enter="addNew"><!--v-model双向绑定-->
             <ul>
                 <li v-for="item in items" :class="{finished:item.isFinished}" @click="toggleFinish(item)">
                     {{item.label}}
@@ -59,11 +59,22 @@
     }
 
 </script>
-<style>
+<style lang="sass?outputStyle=expanded">
+    #todoList{
+        h1{
+            color: green;
+            transform: scale(1);
+            font-size: 128px;
+            display: flex;
+        }
+    }
+
     .message{
         color: red;
+        transform: scale(1);
     }
     .finished{
         text-decoration: underline;
+
     }
 </style>

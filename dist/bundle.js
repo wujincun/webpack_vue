@@ -7726,8 +7726,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-086df6f2!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./app.vue", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-086df6f2!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./app.vue");
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-086df6f2!./../node_modules/sass-loader/index.js?outputStyle=expanded!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./app.vue", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-086df6f2!./../node_modules/sass-loader/index.js?outputStyle=expanded!./../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./app.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -7745,7 +7745,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.message{\n    color: red;\n}\n", ""]);
+	exports.push([module.id, "#todoList h1 {\n  color: green;\n  transform: scale(1);\n  font-size: 2rem;\n  display: flex;\n}\n\n.message {\n  color: red;\n  transform: scale(1);\n}\n\n.finished {\n  text-decoration: underline;\n}", ""]);
 
 	// exports
 
@@ -8067,12 +8067,7 @@
 	        return {
 	            title: 'this is todoList',
 	            newItem: '',
-	            /*items: Store.fetch(),*/
-	            items: [{
-	                label: 'apple'
-	            }, {
-	                label: 'banana'
-	            }]
+	            items: _store2.default.fetch()
 	        };
 	    },
 
@@ -8086,7 +8081,6 @@
 	                isFinished: false
 	            });
 	            this.newItem = '';
-	            alert(2);
 	        },
 	        toggleFinish: function toggleFinish(item) {
 	            item.isFinished = !item.isFinished;
@@ -8095,7 +8089,6 @@
 	    watch: {
 	        items: {
 	            handler: function handler(items) {
-	                alert(1);
 	                _store2.default.save(items);
 	            },
 	            deep: true //如果不这样写，没有深层赋值，那么items里只是一个key更改的话不会检测到
@@ -8202,7 +8195,7 @@
 	module.exports={render:function (){with(this) {
 	  return _m(0)
 	}},staticRenderFns: [function (){with(this) {
-	  return _h('div', ["component.hello1234"])
+	  return _h('div', ["component.hello12"])
 	}}]}
 	if (false) {
 	  module.hot.accept()
@@ -8238,7 +8231,7 @@
 	      "value": _s(newItem)
 	    },
 	    on: {
-	      "key": function($event) {
+	      "keyup": function($event) {
 	        if ($event.keyCode !== 13) return;
 	        addNew($event)
 	      },

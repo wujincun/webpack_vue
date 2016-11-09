@@ -106,7 +106,10 @@ module.exports = {
         new //ExtractTextPlugin("[name].css")*!/
     ]
 };*/
-var path = require('path');
+var path = require('path'),
+    webpack = require('webpack'),
+    autoprefixer = require('autoprefixer'),
+    px2rem = require('postcss-px2rem');
 
 var config = {
     entry: [
@@ -126,20 +129,47 @@ var config = {
                 exclude: /node_modules/
             },
             {
+                test:   /\.css$/,
+                loader: "style-loader!css-loader!postcss-loader"
+            },
+            {
+                test: /\.less$/,
+                loader: 'style-loader!css-loader!less-loader!postcss-loader'
+            },
+            { 
+                test: /\.scss$/, 
+                loader: 'style-loader!css-loader!sass-loader!postcss-loader'
+            },
+            {
                 test: /\.vue$/,
                 loader: 'vue'
             }
         ]
+    },
+    vue: {
+        /*loaders: {
+            css: ExtractTextPlugin.extract("vue-style!css"),
+            less: ExtractTextPlugin.extract("vue-style!css!less-loader")
+        },*/
+        postcss: [require('postcss-px2rem')({remUnit: 64})]
+    },
+    postcss() {
+        return [autoprefixer({ browsers: ['last 2 versions'] }),px2rem({remUnit: 75})];
     },
     resolve: {
         /**
          * Vue v2.x 之後 NPM Package 預設只會匯出 runtime-only 版本
          */
         alias: {
-            vue: 'vue/dist/vue.js'
+            vue: 'vue/dist/vue.js'/*vue2.0必须的*/
         },
         extensions: ['', '.js', '.vue']
     },
+    // 服务器配置相关，自动刷新!
+    devServer: {
+        hot: true,
+        inline: true
+    }
 /*    plugins:[
         new htmlWebpackPlugin({
             title:"欢迎",
