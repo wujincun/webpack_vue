@@ -1,6 +1,7 @@
 
 <template>
         <div id="todoList">
+            <Headers msg="something interesting"></Headers>
             <h1 v-text="title"></h1><!--<h1>{{title}}</h1>相同-->
             <input type="text" v-model="newItem"  @keyup.enter="addNew"><!--v-model双向绑定-->
             <ul>
@@ -14,6 +15,7 @@
 <script>
     import Store from "./store"
     import Hello from "./components/hello"
+    import Headers from "./components/header"
     export default{
         data(){
             return {
@@ -33,7 +35,8 @@
             }
         },
         components:{
-            Hello
+            Hello,
+            Headers
         },//模块必须引入注册
         methods:{
             addNew(){

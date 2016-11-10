@@ -153,9 +153,9 @@ var config = {
         },*/
         postcss: [require('autoprefixer')({ browsers: ['last 2 versions'] }),require('postcss-px2rem')({remUnit: 64})]
     },
-    postcss() {
+  /*  postcss() {
         return [autoprefixer({ browsers: ['last 2 versions'] }),px2rem({remUnit: 75})];  //貌似有了vue这个没用
-    },
+    },*/
     resolve: {
         /**
          * Vue v2.x 之後 NPM Package 預設只會匯出 runtime-only 版本
@@ -168,7 +168,7 @@ var config = {
     // 服务器配置相关，自动刷新!
     devServer: {
         hot: true,
-        inline: true
+        inline: true,
     }
 /*    plugins:[
         new htmlWebpackPlugin({
