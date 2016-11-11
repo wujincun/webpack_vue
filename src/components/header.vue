@@ -1,13 +1,17 @@
 <template>
-    <Component-a></Component-a>
-    <div @click="doThis">click here</div>
+    <div class="headerC">
+        <p>childrenTellMe:{{childWords}}</p>
+        <Component-a v-on:childrenTellMe="listenToBoy"></Component-a>
+        <div @click="doThis">click here</div>
+    </div>
 </template>
 <script>
-    import ComponentA from "./componenntA"
+    import ComponentA from "./componentA"
     export default{
         data(){
             return{
-                username:'wujincun'
+                username:'wujincun',
+                childWords:''
             }
         },
         props:['msg'],
@@ -17,6 +21,9 @@
         methods:{
             doThis(){
                 console.log(this.msg)
+            },
+            listenToBoy(msg){
+                this.childWords = msg  //childWords必须在data里注册，否则这里不能更新   $emit
             }
         }
     }

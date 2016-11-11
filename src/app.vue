@@ -1,6 +1,7 @@
 
 <template>
         <div id="todoList">
+            <!--<component-a></component-a>-->
             <Headers msg="something interesting"></Headers>
             <h1 v-text="title"></h1><!--<h1>{{title}}</h1>相同-->
             <input type="text" v-model="newItem"  @keyup.enter="addNew"><!--v-model双向绑定-->
@@ -16,6 +17,7 @@
     import Store from "./store"
     import Hello from "./components/hello"
     import Headers from "./components/header"
+    /*import ComponentA from "./components/componentA"*/
     export default{
         data(){
             return {
