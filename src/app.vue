@@ -11,12 +11,18 @@
                 </li>
             </ul>
             <Hello></Hello>
+            <ul>
+                <li><router-link to="/App">第一页</router-link></li>
+                <li><router-link to="/Second">第二页</router-link></li>
+            </ul>
         </div>
 </template>
 <script>
-    import Store from "./store"
+    import  "./utils/flexible"
+    import Store from "./utils/store"
     import Hello from "./components/hello"
     import Headers from "./components/header"
+
     /*import ComponentA from "./components/componentA"*/
     export default{
         data(){
