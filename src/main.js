@@ -6,29 +6,26 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from "vue-router";
 
-import Second from './second.vue'
-
-//开启debug模式
-Vue.config.debug = true;
+import ComponentA from './components/componentA.vue'
 
 Vue.use(VueRouter);
 
 
+// 2. Define some routes
+// Each route should map to a component. The "component" can
+// either be an actual component constructor created via
+// Vue.extend(), or just a component options object.
+// We'll talk about nested routes later.
+const routes = [
+    { path: '/ComponentA', component: ComponentA },
+    { path: '/App', component: App }
+];
 
 //路由
 const router = new VueRouter({
     mode: 'history',
     base: __dirname,
-    routes: [
-        {
-            path: '/first',
-            component: App
-        },
-        {
-            path: '/second',
-            component: Second
-        }
-    ]
+    routes:routes
 });
 
 //创建一个vue实例,v1挂载在body上面，v2不能挂在到html或body上，要挂在到正常元素上

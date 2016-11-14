@@ -12,9 +12,10 @@
             </ul>
             <Hello></Hello>
             <ul>
-                <li><router-link to="/App">第一页</router-link></li>
-                <li><router-link to="/Second">第二页</router-link></li>
+                <li><router-link to="/ComponentA">第一页</router-link></li>
+                <li><router-link to="/App">第二页</router-link></li>
             </ul>
+            <router-view></router-view>
         </div>
 </template>
 <script>
@@ -68,6 +69,7 @@
             }
         }
     }
+
 
 </script>
 <style lang="sass?outputStyle=expanded">
