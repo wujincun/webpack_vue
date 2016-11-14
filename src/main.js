@@ -5,20 +5,17 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from "vue-router";
+import VueResource from 'vue-resource'
 
 import ComponentA from './components/componentA.vue'
+import ComponentB from './components/componentB.vue'
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
-
-// 2. Define some routes
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// Vue.extend(), or just a component options object.
-// We'll talk about nested routes later.
 const routes = [
     { path: '/ComponentA', component: ComponentA },
-    { path: '/App', component: App }
+    { path: '/ComponentB', component: ComponentB }
 ];
 
 //路由
