@@ -3,22 +3,25 @@
  * Created by wujincun on 2016/10/31.
  */
 import Vue from 'vue'
-import App from './App.vue'
+import App from './components/app.vue'
 import VueRouter from "vue-router";
 import VueResource from 'vue-resource'
+import Vuex from 'vuex'
+
+Vue.use(VueRouter);
+Vue.use(VueResource);
+Vue.use(Vuex);
 
 import ComponentA from './components/componentA.vue'
 import ComponentB from './components/componentB.vue'
 
-Vue.use(VueRouter);
-Vue.use(VueResource);
 
+//路由
 const routes = [
     { path: '/ComponentA', component: ComponentA },
     { path: '/ComponentB', component: ComponentB }
 ];
 
-//路由
 const router = new VueRouter({
     mode: 'history',
     base: __dirname,

@@ -6,8 +6,9 @@
             <h1 v-text="title"></h1><!--<h1>{{title}}</h1>相同-->
             <input type="text" v-model="newItem"  @keyup.enter="addNew"><!--v-model双向绑定-->
             <ul>
-                <li v-for="item in items" :class="{finished:item.isFinished}" @click="toggleFinish(item)">
-                    {{item.label}}
+                <li v-for="item in items" >
+                    <span :class="{finished:item.isFinished}" @click="toggleFinish(item)">{{item.label}}</span>
+                    <span class="delete" @click="delete(item)">X</span>
                 </li>
             </ul>
             <Hello></Hello>
@@ -19,10 +20,10 @@
         </div>
 </template>
 <script>
-    import  "./utils/flexible"
-    import Store from "./utils/store"
-    import Hello from "./components/hello"
-    import Headers from "./components/header"
+    import  "../utils/flexible"
+    import Store from "../utils/store"
+    import Hello from "../components/hello"
+    import Headers from "../components/header"
 
     /*import ComponentA from "./components/componentA"*/
     export default{
@@ -57,6 +58,9 @@
             },
             toggleFinish(item){
                 item.isFinished = !item.isFinished
+            },
+            delete(item){
+
             }
 
         },
@@ -72,27 +76,4 @@
 
 
 </script>
-<style lang="sass?outputStyle=expanded">
-    @keyframes mymove {
-        0% {transform:scale(0)}
-        100% {transform: scale(1)}
-    }
-    #todoList{
-        animation:mymove 5s;
-        h1{
-            color: green;
-            transform: scale(1);
-            font-size: 128px;
-            display: flex;
-        }
-    }
-
-    .message{
-        color: red;
-        transform: scale(1);
-    }
-    .finished{
-        text-decoration: underline;
-
-    }
-</style>
+<style src="../css/main.css"></style>
