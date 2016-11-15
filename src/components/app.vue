@@ -8,7 +8,7 @@
             <ul>
                 <li v-for="item in items" >
                     <span :class="{finished:item.isFinished}" @click="toggleFinish(item)">{{item.label}}</span>
-                    <span class="delete" @click="delete(item)">X</span>
+                    <span class="delete" @click="deleteLine(item)">X</span>
                 </li>
             </ul>
             <Hello></Hello>
@@ -22,8 +22,8 @@
 <script>
     import  "../utils/flexible"
     import Store from "../utils/store"
-    import Hello from "../components/hello"
-    import Headers from "../components/header"
+    import Hello from "./hello"
+    import Headers from "./header"
 
     /*import ComponentA from "./components/componentA"*/
     export default{
@@ -59,8 +59,9 @@
             toggleFinish(item){
                 item.isFinished = !item.isFinished
             },
-            delete(item){
-
+            deleteLine(item){
+                var index = this.items.indexOf(item);
+                this.items.splice(index, 1)
             }
 
         },

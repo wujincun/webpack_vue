@@ -8,8 +8,5 @@ export default{
     },
     save(items){
         window.localStorage.setItem(STORAGE_KEY,JSON.stringify(items))
-    },
-    delete(item){
-        window.localStorage.removeItem()
     }
 }
